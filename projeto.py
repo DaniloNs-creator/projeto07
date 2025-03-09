@@ -3,6 +3,29 @@ import pandas as pd
 import numpy as np
 from io import BytesIO
 
+import subprocess  # Importando diretamente, pois faz parte da biblioteca padrão
+
+# Atualizando o pip antes de qualquer outra instalação
+subprocess.check_call(["python", '-m', 'pip', 'install', '--upgrade', 'pip'])
+
+# Certifique-se de que o módulo xlsxwriter está instalado
+subprocess.check_call(["python", '-m', 'pip', 'install', 'xlsxwriter'])
+import xlsxwriter
+
+# Certifique-se de que o módulo plotly está instalado
+try:
+    import plotly.graph_objects as go
+except ModuleNotFoundError:
+    subprocess.check_call(["python", '-m', 'pip', 'install', 'plotly'])
+    import plotly.graph_objects as go
+
+# Certifique-se de que o módulo matplotlib está instalado
+try:
+    import matplotlib
+except ModuleNotFoundError:
+    subprocess.check_call(["python", '-m', 'pip', 'install', 'matplotlib'])
+    import matplotlib
+
 # Função para exportar os dados para um arquivo Excel, incluindo os enunciados
 def exportar_para_excel_completo(respostas, perguntas_hierarquicas, categorias, valores):
     # Criando um DataFrame com as perguntas e respostas
